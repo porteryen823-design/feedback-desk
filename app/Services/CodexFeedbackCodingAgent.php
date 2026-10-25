@@ -61,8 +61,7 @@ class CodexFeedbackCodingAgent extends CliFeedbackCodingAgent
             'exec',
             '--json',
             '--ephemeral',
-            '--sandbox',
-            'workspace-write',
+            // --approve-for-me 已經使用 workspace-write 沙盒；再加 --sandbox 會被 codex-cli 拒絕（exit 2）。
             '--approve-for-me',
             '--output-schema',
             resource_path('feedback/codex-result.schema.json'),
