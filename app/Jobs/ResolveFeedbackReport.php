@@ -54,9 +54,9 @@ class ResolveFeedbackReport implements ShouldQueue
             throw $exception;
         }
 
+        // 自動處理只會把單改到待審核，結案（已完成）由客戶確認後由人決定。
         $reportStatus = match ($result->status) {
-            FeedbackAutomationStatus::Completed => FeedbackReportStatus::Completed,
-            FeedbackAutomationStatus::NeedsInput => FeedbackReportStatus::NeedsInput,
+            FeedbackAutomationStatus::Completed, FeedbackAutomationStatus::NeedsInput => FeedbackReportStatus::NeedsInput,
             default => null,
         };
         $message = $result->summary;
